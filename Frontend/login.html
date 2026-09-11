@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="index.css" />
+    <title>Log in</title>
+  </head>
+  <body>
+    <main>
+      <form>
+        <fieldset>
+          <legend>Log in</legend>
+          <div id="login-error" tabindex="-1"></div>
+
+          <p>Both fields are required.</p>
+          <label
+            >Email address
+            <input
+              type="text"
+              size="30"
+              autocomplete="email"
+              name="email"
+              aria-describedby="e-error"
+            />
+          </label>
+          <span id="e-error"></span>
+
+          <label
+            >Password (4 digit number)
+
+            <input
+              type="text"
+              name="password"
+              size="30"
+              inputmode="numeric"
+              maxlength="4"
+              aria-describedby="p-error"
+            />
+          </label>
+          <span id="p-error"></span>
+
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </main>
+    <script src="login.js"></script>
+  </body>
+</html>
