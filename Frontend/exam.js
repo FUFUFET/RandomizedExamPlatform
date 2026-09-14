@@ -2,6 +2,21 @@
 // if (!token) {
 //   window.location.href = "index.html";
 // }
+
+// const lastQuestion = localStorage.getItem("lastQuestion");
+// if (lastQuestion === "4") {
+//   question1.classList.add("hidden");
+//   question2.classList.add("hidden");
+//   question3.classList.add("hidden");
+//   question4.classList.remove("hidden");
+//   headings[3].focus();
+// } else {
+//   // default: start at question 1
+//   question2.classList.add("hidden");
+//   question3.classList.add("hidden");
+//   question4.classList.add("hidden");
+// }
+
 const token = localStorage.getItem("token");
 
 if (!token) {
@@ -70,4 +85,23 @@ prev4.addEventListener("click", () => {
   question4.classList.add("hidden");
   question3.classList.remove("hidden");
   headings[2].focus();
+});
+
+const next4 = document.getElementById("next4");
+next4.addEventListener("click", () => {
+  // localStorage.setItem("lastQuestion", "4");
+
+  window.location.href = "review.html";
+});
+
+// Save answers before navigating to review.html
+document.getElementById("next4").addEventListener("click", () => {
+  const answers = {
+    q1: document.querySelector('input[name="q1"]:checked')?.value || null,
+    q2: document.querySelector('input[name="q2"]:checked')?.value || null,
+    q3: document.querySelector('input[name="q3"]:checked')?.value || null,
+    q4: document.querySelector('input[name="q4"]:checked')?.value || null,
+  };
+
+  localStorage.setItem("examAnswers", JSON.stringify(answers));
 });
