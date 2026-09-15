@@ -49,6 +49,11 @@ if (!token) {
   window.location.href = "login.html";
 }
 
+// const question1 = document.getElementById("question-1");
+// const question2 = document.getElementById("question-2");
+// const question3 = document.getElementById("question-3");
+// const question4 = document.getElementById("question-4");
+
 // const reviewHeading = document.getElementById("review-heading");
 // reviewHeading.setAttribute("tabindex", "-1");
 // reviewHeading.focus();
@@ -63,9 +68,16 @@ const done = document.getElementById("done");
 done.setAttribute("disabled", "true");
 
 const prev5 = document.getElementById("prev5");
+
+// prev5.addEventListener("click", () => {
+//   window.location.href = "exam.html";
+// });
+
 prev5.addEventListener("click", () => {
+  sessionStorage.setItem("returnToQuestion", "4");
   window.location.href = "exam.html";
 });
+const returnToQuestion = sessionStorage.getItem("returnToQuestion");
 
 if (!answers.q1) unanswered.push("Question 1");
 if (!answers.q2) unanswered.push("Question 2");

@@ -87,15 +87,28 @@ prev4.addEventListener("click", () => {
   headings[2].focus();
 });
 
+// const next4 = document.getElementById("next4");
+// next4.addEventListener("click", () => {
+//   // localStorage.setItem("lastQuestion", "4");
+
+//   window.location.href = "review.html";
+// });
+
+// // Save answers before navigating to review.html
+// document.getElementById("next4").addEventListener("click", () => {
+//   const answers = {
+//     q1: document.querySelector('input[name="q1"]:checked')?.value || null,
+//     q2: document.querySelector('input[name="q2"]:checked')?.value || null,
+//     q3: document.querySelector('input[name="q3"]:checked')?.value || null,
+//     q4: document.querySelector('input[name="q4"]:checked')?.value || null,
+//   };
+
+//   localStorage.setItem("examAnswers", JSON.stringify(answers));
+// });
+
 const next4 = document.getElementById("next4");
+
 next4.addEventListener("click", () => {
-  // localStorage.setItem("lastQuestion", "4");
-
-  window.location.href = "review.html";
-});
-
-// Save answers before navigating to review.html
-document.getElementById("next4").addEventListener("click", () => {
   const answers = {
     q1: document.querySelector('input[name="q1"]:checked')?.value || null,
     q2: document.querySelector('input[name="q2"]:checked')?.value || null,
@@ -104,4 +117,14 @@ document.getElementById("next4").addEventListener("click", () => {
   };
 
   localStorage.setItem("examAnswers", JSON.stringify(answers));
+
+  window.location.href = "review.html";
 });
+
+const returnToQuestion = sessionStorage.getItem("returnToQuestion");
+if (returnToQuestion === "4") {
+  question1.classList.add("hidden");
+  question4.classList.remove("hidden");
+
+  sessionStorage.removeItem("returnToQuestion");
+}
