@@ -32,7 +32,7 @@ const headings = document.querySelectorAll("div > h1");
 for (let i = 0; i < headings.length && i < 4; i++) {
   const parentDiv = headings[i].parentElement;
   parentDiv.id = "question-" + (i + 1);
-  headings[i].textContent = `Question ${i + 1}`;
+  // headings[i].textContent = `Question ${i + 1}`;
   headings[i].setAttribute("tabindex", "-1");
 }
 
@@ -94,18 +94,6 @@ prev4.addEventListener("click", () => {
 //   window.location.href = "review.html";
 // });
 
-// // Save answers before navigating to review.html
-// document.getElementById("next4").addEventListener("click", () => {
-//   const answers = {
-//     q1: document.querySelector('input[name="q1"]:checked')?.value || null,
-//     q2: document.querySelector('input[name="q2"]:checked')?.value || null,
-//     q3: document.querySelector('input[name="q3"]:checked')?.value || null,
-//     q4: document.querySelector('input[name="q4"]:checked')?.value || null,
-//   };
-
-//   localStorage.setItem("examAnswers", JSON.stringify(answers));
-// });
-
 const next4 = document.getElementById("next4");
 
 next4.addEventListener("click", () => {
@@ -120,6 +108,32 @@ next4.addEventListener("click", () => {
 
   window.location.href = "review.html";
 });
+
+const savedAnswers = JSON.parse(localStorage.getItem("examAnswers")) || {};
+
+if (savedAnswers.q1) {
+  document.querySelector(
+    `input[name="q1"][value="${savedAnswers.q1}"]`,
+  ).checked = true;
+}
+
+if (savedAnswers.q2) {
+  document.querySelector(
+    `input[name="q2"][value="${savedAnswers.q2}"]`,
+  ).checked = true;
+}
+
+if (savedAnswers.q3) {
+  document.querySelector(
+    `input[name="q3"][value="${savedAnswers.q3}"]`,
+  ).checked = true;
+}
+
+if (savedAnswers.q4) {
+  document.querySelector(
+    `input[name="q4"][value="${savedAnswers.q4}"]`,
+  ).checked = true;
+}
 
 const returnToQuestion = sessionStorage.getItem("returnToQuestion");
 if (returnToQuestion === "4") {

@@ -77,7 +77,6 @@ prev5.addEventListener("click", () => {
   sessionStorage.setItem("returnToQuestion", "4");
   window.location.href = "exam.html";
 });
-const returnToQuestion = sessionStorage.getItem("returnToQuestion");
 
 if (!answers.q1) unanswered.push("Question 1");
 if (!answers.q2) unanswered.push("Question 2");

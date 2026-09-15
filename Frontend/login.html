@@ -9,7 +9,7 @@
   </head>
   <body>
     <main>
-      <form>
+      <form novalidate>
         <fieldset>
           <legend>Log in</legend>
           <div id="login-error" tabindex="-1"></div>
@@ -17,8 +17,17 @@
           <p>Both fields are required.</p>
           <label
             >Email address
-            <input
+
+            <!-- <input
               type="text"
+              size="30"
+              autocomplete="email"
+              name="email"
+              aria-describedby="e-error"
+            />   -->
+
+            <input
+              type="email"
               size="30"
               autocomplete="email"
               name="email"

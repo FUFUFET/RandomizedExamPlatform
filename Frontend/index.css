@@ -1,11 +1,11 @@
-input[type="text"],
-input[type="number"] {
+input[type="email"],
+input[type="text"] {
   margin: 0.1rem;
   font-size: 1rem;
 
   border: 2px solid gray;
   border-radius: 6px;
-  background-color: #fff;
+  background-color: white;
   color: #333;
   margin-left: auto;
 }

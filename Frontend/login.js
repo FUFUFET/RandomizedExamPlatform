@@ -161,76 +161,102 @@ const users = [
 ];
 
 const form = document.querySelector("form");
+
 const email = form.elements.email;
+
 const password = form.elements.password;
+
 const eError = document.getElementById("e-error");
+
 const pError = document.getElementById("p-error");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
   validateForm();
 });
 
 email.addEventListener("input", () => {
-  if (email.value.includes("@")) {
+  if (email.value.trim() && email.validity.typeMismatch === false) {
     email.removeAttribute("aria-invalid");
+
     eError.textContent = "";
   }
 });
 
 password.addEventListener("input", () => {
   const pwd = password.value.trim();
+
   if (pwd.length === 4 && /^\d+$/.test(pwd)) {
     password.removeAttribute("aria-invalid");
+
     pError.textContent = "";
   }
 });
 
 function validateForm() {
   const invalid = [];
-  let hasError = false;
 
   // Reset
+
   email.removeAttribute("aria-invalid");
+
   password.removeAttribute("aria-invalid");
+
+  eError.textContent = "";
+
+  pError.textContent = "";
+
   eError.style.color = "#b50f04";
+
   pError.style.color = "#b50f04";
 
   // Email validation
+
   if (!email.value.trim()) {
-    email.setAttribute("aria-invalid", "true");
     eError.textContent = "Email address is required.";
-    hasError = true;
-    invalid.push(email);
-  } else if (!email.value.includes("@")) {
+
     email.setAttribute("aria-invalid", "true");
+
+    invalid.push(email);
+  } else if (email.validity.typeMismatch) {
     eError.textContent = "Please enter a valid email address.";
-    hasError = true;
+
+    email.setAttribute("aria-invalid", "true");
+
     invalid.push(email);
   }
 
   // Password validation
+
   const pwd = password.value.trim();
+
   if (!pwd || pwd.length !== 4 || !/^\d+$/.test(pwd)) {
     password.setAttribute("aria-invalid", "true");
+
     pError.textContent = "Please enter a 4-digit number.";
-    hasError = true;
+
     invalid.push(password);
   }
 
   // Focus first invalid field
+
   if (invalid.length > 0) {
     invalid[0].focus();
-    return; // stop here if validation failed
+
+    return;
   }
 
-  // If no validation errors → authenticate
+  // No validation errors → authenticate
+
   authenticate();
 }
 
 function authenticate() {
   const emailValue = email.value.trim();
+
   const passwordValue = password.value.trim();
+
   const loginE = document.getElementById("login-error");
 
   const match = users.find(
@@ -239,11 +265,15 @@ function authenticate() {
 
   if (match) {
     localStorage.setItem("token", "fake-token");
+
     localStorage.setItem("user", JSON.stringify(match));
+
     window.location.href = "exam.html";
   } else {
     loginE.textContent = "Incorrect email or password.";
+
     loginE.style.color = "#b50f04";
+
     loginE.focus();
   }
 }
