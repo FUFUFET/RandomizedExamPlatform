@@ -277,3 +277,7 @@ function authenticate() {
     loginE.focus();
   }
 }
+
+window.addEventListener("pageshow", () => {
+  localStorage.removeItem("examAnswers");
+});
