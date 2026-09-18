@@ -1,1 +1,29 @@
+// Protect the page
+const token = localStorage.getItem("token");
+if (!token) {
+  window.location.href = "login.html";
+}
+
+// Accessibility: focus the heading
+const heading = document.querySelector("h1");
+heading.setAttribute("tabindex", "-1");
+heading.focus();
+
+// Clear exam answers
 localStorage.removeItem("examAnswers");
+
+// Optional: end session completely
+// localStorage.removeItem("token");
+// localStorage.removeItem("user");
+
+// Add navigation button
+const main = document.querySelector("main");
+const btn = document.createElement("button");
+btn.textContent = "Return to Home";
+btn.id = "return-home";
+
+btn.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+
+main.appendChild(btn);

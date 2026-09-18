@@ -1,91 +1,112 @@
-// localStorage.removeItem("token");
-// localStorage.removeItem("user");
-// window.location.href = "login.html";
-
-// const token = localStorage.getItem("token");
-
-// if (!token) {
-//   window.location.href = "login.html";
-// }
-// const reviewHeading = document.getElementById("review-heading");
-// reviewHeading.setAttribute("tabindex", "-1");
-
-// reviewHeading.focus();
-// const review = document.getElementById("review-message");
-
-// const params = new URLSearchParams(window.location.search);
-
-// const q1 = params.get("q1");
-// const q2 = params.get("q2");
-// const q3 = params.get("q3");
-// const q4 = params.get("q4");
-
-// const unanswered = [];
-
-// if (!q1) {
-//   unanswered.push("Question 1");
-// }
-
-// if (!q2) {
-//   unanswered.push("Question 2");
-// }
-
-// if (!q3) {
-//   unanswered.push("Question 3");
-// }
-
-// if (!q4) {
-//   unanswered.push("Question 4");
-// }
-
-// if (unanswered.length > 0) {
-//   review.textContent = `${unanswered} are not answered.`;
-// } else {
-//   review.textContent = `You answered all the questions. Please click on Done button.`;
-// }
+// ------------------------------
+// AUTH CHECK
+// ------------------------------
 
 const token = localStorage.getItem("token");
+
 if (!token) {
   window.location.href = "login.html";
 }
 
-// const question1 = document.getElementById("question-1");
-// const question2 = document.getElementById("question-2");
-// const question3 = document.getElementById("question-3");
-// const question4 = document.getElementById("question-4");
+// ------------------------------
+// LOAD SAVED STATE
+// ------------------------------
 
-// const reviewHeading = document.getElementById("review-heading");
-// reviewHeading.setAttribute("tabindex", "-1");
-// reviewHeading.focus();
-
-const review = document.getElementById("review-message");
-
-// Load answers from localStorage
+const questions = JSON.parse(localStorage.getItem("examQuestions")) || [];
 const answers = JSON.parse(localStorage.getItem("examAnswers")) || {};
+const reviewContainer = document.getElementById("review-container");
+const reviewNav = document.getElementById("review-nav");
 
-const unanswered = [];
-const done = document.getElementById("done");
-done.setAttribute("disabled", "true");
+// ------------------------------
+// BLOCK REVIEW IF UNANSWERED
+// ------------------------------
 
-const prev5 = document.getElementById("prev5");
+const unanswered = questions.filter((q) => {
+  const answer = answers[q.id];
 
-// prev5.addEventListener("click", () => {
-//   window.location.href = "exam.html";
-// });
-
-prev5.addEventListener("click", () => {
-  sessionStorage.setItem("returnToQuestion", "4");
-  window.location.href = "exam.html";
+  return answer === undefined || answer === null || answer === "";
 });
 
-if (!answers.q1) unanswered.push("Question 1");
-if (!answers.q2) unanswered.push("Question 2");
-if (!answers.q3) unanswered.push("Question 3");
-if (!answers.q4) unanswered.push("Question 4");
-
 if (unanswered.length > 0) {
-  review.textContent = `${unanswered.join(", ")} are not answered.`;
-} else {
-  done.removeAttribute("disabled");
-  review.textContent = `You answered all the questions. Please click on Done button.`;
+  alert("Please answer all questions before reviewing.");
+  window.location.href = "exam.html";
 }
+
+// ------------------------------
+// RENDER REVIEW CONTENT
+// ------------------------------
+
+function renderReview() {
+  reviewContainer.innerHTML = "";
+
+  questions.forEach((q, index) => {
+    const wrapper = document.createElement("div");
+    const questionText = document.createElement("h2");
+
+    questionText.textContent = `Question ${index + 1}: ${q.question}`;
+    wrapper.appendChild(questionText);
+
+    const userAnswer = answers[q.id];
+
+    // q.answer is the index of the correct option
+    // q.options[q.answer] gets the actual answer text
+    const correctAnswer = q.options[q.answer];
+
+    const userP = document.createElement("p");
+    userP.textContent = `Your answer: ${userAnswer}`;
+    wrapper.appendChild(userP);
+
+    const correctP = document.createElement("p");
+    correctP.textContent = `Correct answer: ${correctAnswer}`;
+    wrapper.appendChild(correctP);
+
+    // Mark correctness
+    const resultP = document.createElement("p");
+
+    if (userAnswer === correctAnswer) {
+      resultP.textContent = "✔ Correct";
+      resultP.style.color = "green";
+    } else {
+      resultP.textContent = "✘ Incorrect";
+      resultP.style.color = "red";
+    }
+
+    wrapper.appendChild(resultP);
+
+    reviewContainer.appendChild(wrapper);
+  });
+}
+
+// ------------------------------
+// RENDER NAV BUTTONS
+// ------------------------------
+
+function renderNav() {
+  reviewNav.innerHTML = "";
+
+  const returnBtn = document.createElement("button");
+
+  returnBtn.textContent = "Return to Exam";
+
+  returnBtn.addEventListener("click", () => {
+    window.location.href = "exam.html";
+  });
+
+  const doneBtn = document.createElement("button");
+
+  doneBtn.textContent = "Finish";
+
+  doneBtn.addEventListener("click", () => {
+    window.location.href = "done.html";
+  });
+
+  reviewNav.appendChild(returnBtn);
+  reviewNav.appendChild(doneBtn);
+}
+
+// ------------------------------
+// INIT
+// ------------------------------
+
+renderReview();
+renderNav();

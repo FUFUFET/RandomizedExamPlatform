@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "question": "What does ARIA stand for?",
+    "options": [
+      "Accessible Rich Internet Applications",
+      "Advanced Rendering Interface API",
+      "Audio Resource Integration Architecture"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 2,
+    "question": "Which HTML element improves semantic structure?",
+    "options": ["<div>", "<section>", "<span>"],
+    "answer": 1
+  }
+]
