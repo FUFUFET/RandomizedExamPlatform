@@ -4,7 +4,7 @@ if (!token) {
   window.location.href = "login.html";
 }
 
-// Accessibility: focus the heading
+// Accessibilitgy: focus the heading
 const heading = document.querySelector("h1");
 heading.setAttribute("tabindex", "-1");
 
@@ -22,7 +22,7 @@ btn.textContent = "Return to Home";
 btn.id = "return-home";
 
 btn.addEventListener("click", () => {
-  window.location.href = "index.html";
+  window.location.href = "login.html";
 });
 
 main.appendChild(btn);

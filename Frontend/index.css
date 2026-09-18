@@ -1,0 +1,59 @@
+body {
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+}
+label {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+#email,
+#password {
+  display: flex;
+  justify-content: space-between;
+}
+
+#logInBTN {
+  display: block;
+  width: 100%;
+}
+
+/* 1. Base Setup & Sizing */
+input[type="radio"] {
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5rem;
+}
+input[type="text"],
+input[type="email"] {
+  margin: 0.5rem 0;
+  font-size: 1em;
+}
+input:focus {
+  outline: 2px blue solid;
+}
+fieldset {
+  all: unset;
+}
+legend {
+  font-size: 2rem;
+}
+button {
+  font-size: 1.3rem;
+  margin: 2rem 1rem;
+}
+button:focus {
+  outline: 3px blue solid;
+}
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 400px) {
+  input[type="text"],
+  input[type="email"] {
+    font-size: initial;
+  }
+}

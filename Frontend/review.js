@@ -61,27 +61,50 @@ function renderReview() {
     // q.options[q.answer] gets the actual answer text
     const correctAnswer = q.options[q.answer];
 
-    const userP = document.createElement("p");
-    userP.textContent = `Your answer: ${userAnswer}`;
-    wrapper.appendChild(userP);
+    // const userP = document.createElement("p");
+    // userP.textContent = `Your answer: ${userAnswer}`;
+    // wrapper.appendChild(userP);
 
-    const correctP = document.createElement("p");
-    correctP.textContent = `Correct answer: ${correctAnswer}`;
-    wrapper.appendChild(correctP);
+    // const correctP = document.createElement("p");
+    // correctP.textContent = `Correct answer: ${correctAnswer}`;
+    // wrapper.appendChild(correctP);
 
+    const dl = document.createElement("dl");
+
+    const userDT = document.createElement("dt");
+    userDT.textContent = "Your answer:";
+
+    dl.appendChild(userDT);
+
+    const userDD = document.createElement("dd");
+    userDD.textContent = userAnswer;
+
+    dl.appendChild(userDD);
+
+    const correctDT = document.createElement("dt");
+    correctDT.textContent = "Correct answer:";
+
+    dl.appendChild(correctDT);
+
+    const correctDD = document.createElement("dd");
+    correctDD.textContent = correctAnswer;
+
+    dl.appendChild(correctDD);
+
+    wrapper.appendChild(dl);
     // Mark correctness
     const resultP = document.createElement("p");
 
     if (userAnswer === correctAnswer) {
       resultP.textContent = "✔ Correct";
-      resultP.style.color = "green";
+      resultP.style.color = "rgb(30, 79, 4)";
     } else {
       resultP.textContent = "✘ Incorrect";
-      resultP.style.color = "red";
+      resultP.style.color = "#980000";
     }
 
     wrapper.appendChild(resultP);
-
+    questionText.after(resultP);
     reviewContainer.appendChild(wrapper);
   });
 }
