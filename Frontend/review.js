@@ -118,9 +118,10 @@ function renderNav() {
 
   const returnBtn = document.createElement("button");
 
-  returnBtn.textContent = "Return to Exam";
+  returnBtn.textContent = "Retake";
 
   returnBtn.addEventListener("click", () => {
+    localStorage.removeItem("examAnswers");
     window.location.href = "exam.html";
   });
 
