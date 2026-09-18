@@ -46,36 +46,26 @@ function renderQuestion() {
   container.innerHTML = "";
 
   const question = questions[currentIndex];
+
   const options = question.options;
+
   const groupName = `q${question.id}`;
 
-  // const heading = document.createElement("h1");
+  const heading = document.createElement("h1");
+
+  heading.textContent = "Question " + (currentIndex + 1);
+
+  heading.setAttribute("tabindex", "-1");
+
+  container.appendChild(heading);
+
   const fieldset = document.createElement("fieldset");
+
   const legend = document.createElement("legend");
 
   legend.textContent = question.question;
+
   fieldset.appendChild(legend);
-
-  // options.forEach((optionText) => {
-  //   const label = document.createElement("label");
-  //   const radioButton = document.createElement("input");
-
-  //   radioButton.type = "radio";
-  //   radioButton.name = groupName;
-  //   radioButton.value = optionText;
-
-  //   if (answers[question.id] === optionText) {
-  //     radioButton.checked = true;
-  //   }
-
-  //   radioButton.addEventListener("change", () => {
-  //     saveAnswer(question.id, optionText);
-  //   });
-
-  //   label.appendChild(radioButton);
-  //   label.appendChild(document.createTextNode(optionText));
-  //   fieldset.appendChild(label);
-  // });
 
   for (let i = 0; i < options.length; i++) {
     const optionText = options[i];
@@ -106,6 +96,8 @@ function renderQuestion() {
   }
 
   container.appendChild(fieldset);
+
+  heading.focus();
 }
 
 // ------------------------------
