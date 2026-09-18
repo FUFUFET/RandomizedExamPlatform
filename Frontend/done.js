@@ -7,7 +7,6 @@ if (!token) {
 // Accessibility: focus the heading
 const heading = document.querySelector("h1");
 heading.setAttribute("tabindex", "-1");
-heading.focus();
 
 // Clear exam answers
 localStorage.removeItem("examAnswers");

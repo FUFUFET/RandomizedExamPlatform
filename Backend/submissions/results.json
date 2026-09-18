@@ -477,5 +477,289 @@
       }
     ],
     "submittedAt": "2026-09-18T02:48:30.201Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "correctAnswer": "Japan",
+        "isCorrect": false
+      },
+      {
+        "questionId": 4,
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "correctAnswer": "Australia",
+        "isCorrect": false
+      }
+    ],
+    "submittedAt": "2026-09-18T02:51:42.859Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Japan",
+        "correctAnswer": "Japan",
+        "isCorrect": true
+      },
+      {
+        "questionId": 4,
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "userAnswer": "Atlantic Ocean",
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "userAnswer": "South Africa",
+        "correctAnswer": "Australia",
+        "isCorrect": false
+      }
+    ],
+    "submittedAt": "2026-09-18T02:52:45.453Z"
+  },
+  {
+    "userId": "fake-token",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Japan",
+        "correctAnswer": "Japan",
+        "isCorrect": true
+      },
+      {
+        "questionId": 4,
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "userAnswer": "Australia",
+        "correctAnswer": "Australia",
+        "isCorrect": true
+      }
+    ],
+    "submittedAt": "2026-09-18T02:56:44.954Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Japan",
+        "correctAnswer": "Japan",
+        "isCorrect": true
+      },
+      {
+        "questionId": 4,
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "userAnswer": "Australia",
+        "correctAnswer": "Australia",
+        "isCorrect": true
+      }
+    ],
+    "submittedAt": "2026-09-18T02:57:08.901Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Japan",
+        "correctAnswer": "Japan",
+        "isCorrect": true
+      },
+      {
+        "questionId": 4,
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "userAnswer": "Australia",
+        "correctAnswer": "Australia",
+        "isCorrect": true
+      }
+    ],
+    "submittedAt": "2026-09-18T02:57:22.218Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Japan",
+        "correctAnswer": "Japan",
+        "isCorrect": true
+      },
+      {
+        "questionId": 4,
+        "userAnswer": "Potato",
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "userAnswer": "Australia",
+        "correctAnswer": "Australia",
+        "isCorrect": true
+      }
+    ],
+    "submittedAt": "2026-09-18T02:58:42.567Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Japan",
+        "correctAnswer": "Japan",
+        "isCorrect": true
+      },
+      {
+        "questionId": 4,
+        "userAnswer": "Potato",
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "userAnswer": "Australia",
+        "correctAnswer": "Australia",
+        "isCorrect": true
+      }
+    ],
+    "submittedAt": "2026-09-18T03:01:54.333Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Japan",
+        "correctAnswer": "Japan",
+        "isCorrect": true
+      },
+      {
+        "questionId": 4,
+        "userAnswer": "Potato",
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "userAnswer": "Indian Ocean",
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "userAnswer": "Australia",
+        "correctAnswer": "Australia",
+        "isCorrect": true
+      }
+    ],
+    "submittedAt": "2026-09-18T03:02:47.698Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Japan",
+        "correctAnswer": "Japan",
+        "isCorrect": true
+      },
+      {
+        "questionId": 4,
+        "correctAnswer": "Avocado",
+        "isCorrect": false
+      },
+      {
+        "questionId": 5,
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "correctAnswer": "Australia",
+        "isCorrect": false
+      }
+    ],
+    "submittedAt": "2026-09-18T03:09:39.797Z"
+  },
+  {
+    "userId": "2",
+    "results": [
+      {
+        "questionId": 3,
+        "userAnswer": "Thailand",
+        "correctAnswer": "Japan",
+        "isCorrect": false
+      },
+      {
+        "questionId": 4,
+        "userAnswer": "Avocado",
+        "correctAnswer": "Avocado",
+        "isCorrect": true
+      },
+      {
+        "questionId": 5,
+        "userAnswer": "Indian Ocean",
+        "correctAnswer": "Pacific Ocean",
+        "isCorrect": false
+      },
+      {
+        "questionId": 6,
+        "userAnswer": "Brazil",
+        "correctAnswer": "Australia",
+        "isCorrect": false
+      }
+    ],
+    "submittedAt": "2026-09-18T03:09:51.744Z"
   }
 ]
