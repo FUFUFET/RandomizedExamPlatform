@@ -49,18 +49,45 @@ function renderQuestion() {
   const options = question.options;
   const groupName = `q${question.id}`;
 
+  // const heading = document.createElement("h1");
   const fieldset = document.createElement("fieldset");
   const legend = document.createElement("legend");
 
   legend.textContent = question.question;
   fieldset.appendChild(legend);
 
-  options.forEach((optionText) => {
+  // options.forEach((optionText) => {
+  //   const label = document.createElement("label");
+  //   const radioButton = document.createElement("input");
+
+  //   radioButton.type = "radio";
+  //   radioButton.name = groupName;
+  //   radioButton.value = optionText;
+
+  //   if (answers[question.id] === optionText) {
+  //     radioButton.checked = true;
+  //   }
+
+  //   radioButton.addEventListener("change", () => {
+  //     saveAnswer(question.id, optionText);
+  //   });
+
+  //   label.appendChild(radioButton);
+  //   label.appendChild(document.createTextNode(optionText));
+  //   fieldset.appendChild(label);
+  // });
+
+  for (let i = 0; i < options.length; i++) {
+    const optionText = options[i];
+
     const label = document.createElement("label");
+
     const radioButton = document.createElement("input");
 
     radioButton.type = "radio";
+
     radioButton.name = groupName;
+
     radioButton.value = optionText;
 
     if (answers[question.id] === optionText) {
@@ -72,9 +99,11 @@ function renderQuestion() {
     });
 
     label.appendChild(radioButton);
+
     label.appendChild(document.createTextNode(optionText));
+
     fieldset.appendChild(label);
-  });
+  }
 
   container.appendChild(fieldset);
 }
@@ -126,13 +155,19 @@ function renderNav() {
     });
   }
 
-  buttons.forEach((btn) => {
+  for (let i = 0; i < buttons.length; i++) {
+    const btn = buttons[i];
+
     const buttonEl = document.createElement("button");
+
     buttonEl.type = "button";
+
     buttonEl.textContent = btn.text;
+
     buttonEl.addEventListener("click", btn.onClick);
+
     nav.appendChild(buttonEl);
-  });
+  }
 }
 
 // ------------------------------
@@ -177,3 +212,86 @@ async function submitExam() {
 // INIT
 // ------------------------------
 loadExam();
+
+// const token = localStorage.getItem("token");
+
+// if (!token) {
+//   window.location.href = "login.html";
+// }
+
+// const examContainer = document.getElementById("exam-container");
+// const nextButton = document.getElementById("next4");
+
+// let questions = [];
+
+// fetch("questions.json")
+//   .then((response) => response.json())
+//   .then((data) => {
+//     questions = data;
+
+//     // Randomize the questions
+//     for (let i = questions.length - 1; i > 0; i--) {
+//       const randomIndex = Math.floor(Math.random() * (i + 1));
+
+//       const temp = questions[i];
+//       questions[i] = questions[randomIndex];
+//       questions[randomIndex] = temp;
+//     }
+
+//     // Create the questions
+//     for (let i = 0; i < questions.length; i++) {
+//       const question = questions[i];
+
+//       const fieldset = document.createElement("fieldset");
+
+//       const legend = document.createElement("legend");
+//       legend.textContent = question.question;
+
+//       fieldset.appendChild(legend);
+
+//       for (let j = 0; j < question.options.length; j++) {
+//         const option = question.options[j];
+
+//         const label = document.createElement("label");
+
+//         const radio = document.createElement("input");
+//         radio.type = "radio";
+//         radio.name = "question" + question.id;
+//         radio.value = option;
+
+//         label.appendChild(radio);
+//         label.appendChild(document.createTextNode(" " + option));
+
+//         fieldset.appendChild(label);
+//         fieldset.appendChild(document.createElement("br"));
+//       }
+
+//       examContainer.appendChild(fieldset);
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("Error loading questions:", error);
+//   });
+
+// // Save answers and go to review
+// nextButton.addEventListener("click", () => {
+//   const examAnswers = {};
+
+//   for (let i = 0; i < questions.length; i++) {
+//     const question = questions[i];
+
+//     const selectedAnswer = document.querySelector(
+//       `input[name="question${question.id}"]:checked`,
+//     );
+
+//     if (selectedAnswer) {
+//       examAnswers["q" + question.id] = selectedAnswer.value;
+//     } else {
+//       examAnswers["q" + question.id] = null;
+//     }
+//   }
+
+//   localStorage.setItem("examAnswers", JSON.stringify(examAnswers));
+// });
+
+// loadExam();
