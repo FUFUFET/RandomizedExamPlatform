@@ -17,6 +17,11 @@ label {
 #logInBTN {
   display: block;
   width: 100%;
+  margin: 2rem 0;
+  background-color: white;
+  border: black 1px solid;
+  padding: 0.5rem 0;
+  border-radius: 0.4rem;
 }
 
 /* 1. Base Setup & Sizing */
@@ -29,6 +34,8 @@ input[type="text"],
 input[type="email"] {
   margin: 0.5rem 0;
   font-size: 1em;
+  border: gray 1px solid;
+  border-radius: 0.4rem;
 }
 input:focus {
   outline: 2px blue solid;
@@ -44,7 +51,7 @@ button {
   margin: 2rem 1rem;
 }
 button:focus {
-  outline: 3px blue solid;
+  outline: 2px blue solid;
 }
 nav {
   display: flex;

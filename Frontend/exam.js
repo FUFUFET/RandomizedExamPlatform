@@ -15,24 +15,64 @@ const container = document.getElementById("question-container");
 // ------------------------------
 // FETCH QUESTIONS
 // ------------------------------
+// async function loadExam() {
+//   try {
+//     const res = await fetch("http://localhost:3000/exam/start", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+
+//     const data = await res.json();
+
+//     questions = data.questions;
+
+//     // Save questions for review page
+//     localStorage.setItem("examQuestions", JSON.stringify(questions));
+
+//     renderQuestion();
+//     renderNav();
+//   } catch (err) {
+//     console.error("Failed to load exam:", err);
+//   }
+// }
+
 async function loadExam() {
   try {
-    const res = await fetch("http://localhost:3000/exam/start", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const savedQuestions = localStorage.getItem("examQuestions");
 
-    const data = await res.json();
+    if (savedQuestions) {
+      questions = JSON.parse(savedQuestions);
+    } else {
+      const res = await fetch("http://localhost:3000/exam/start", {
+        method: "POST",
 
-    questions = data.questions;
+        headers: {
+          "Content-Type": "application/json",
 
-    // Save questions for review page
-    localStorage.setItem("examQuestions", JSON.stringify(questions));
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+
+      questions = data.questions;
+
+      localStorage.setItem("examQuestions", JSON.stringify(questions));
+    }
+
+    const returnToQuestion = localStorage.getItem("returnToQuestion");
+
+    if (returnToQuestion !== null) {
+      currentIndex = Number(returnToQuestion);
+
+      localStorage.removeItem("returnToQuestion");
+    }
 
     renderQuestion();
+
     renderNav();
   } catch (err) {
     console.error("Failed to load exam:", err);
@@ -42,7 +82,65 @@ async function loadExam() {
 // ------------------------------
 // RENDER QUESTION
 // ------------------------------
-function renderQuestion() {
+// function renderQuestion() {
+//   container.innerHTML = "";
+
+//   const question = questions[currentIndex];
+
+//   const options = question.options;
+
+//   const groupName = `q${question.id}`;
+
+//   const heading = document.createElement("h1");
+
+//   heading.textContent = "Question " + (currentIndex + 1);
+
+//   heading.setAttribute("tabindex", "-1");
+
+//   container.appendChild(heading);
+
+//   const fieldset = document.createElement("fieldset");
+
+//   const legend = document.createElement("legend");
+
+//   legend.textContent = question.question;
+
+//   fieldset.appendChild(legend);
+
+//   for (let i = 0; i < options.length; i++) {
+//     const optionText = options[i];
+
+//     const label = document.createElement("label");
+
+//     const radioButton = document.createElement("input");
+
+//     radioButton.type = "radio";
+
+//     radioButton.name = groupName;
+
+//     radioButton.value = optionText;
+
+//     if (answers[question.id] === optionText) {
+//       radioButton.checked = true;
+//     }
+
+//     radioButton.addEventListener("change", () => {
+//       saveAnswer(question.id, optionText);
+//     });
+
+//     label.appendChild(radioButton);
+
+//     label.appendChild(document.createTextNode(optionText));
+
+//     fieldset.appendChild(label);
+//   }
+
+//   container.appendChild(fieldset);
+
+//   heading.focus();
+// }
+
+function renderQuestion(shouldFocusHeading = false) {
   container.innerHTML = "";
 
   const question = questions[currentIndex];
@@ -97,9 +195,10 @@ function renderQuestion() {
 
   container.appendChild(fieldset);
 
-  heading.focus();
+  if (shouldFocusHeading) {
+    heading.focus();
+  }
 }
-
 // ------------------------------
 // RENDER NAV
 // ------------------------------
@@ -114,7 +213,7 @@ function renderNav() {
       text: "Previous",
       onClick: () => {
         currentIndex--;
-        renderQuestion();
+        renderQuestion(true);
         renderNav();
       },
     });
@@ -125,7 +224,7 @@ function renderNav() {
       text: "Next",
       onClick: () => {
         currentIndex++;
-        renderQuestion();
+        renderQuestion(true);
         renderNav();
       },
     });

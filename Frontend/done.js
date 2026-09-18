@@ -18,7 +18,7 @@ localStorage.removeItem("examAnswers");
 // Add navigation button
 const main = document.querySelector("main");
 const btn = document.createElement("button");
-btn.textContent = "Return to Home";
+btn.textContent = "Return to login page";
 btn.id = "return-home";
 
 btn.addEventListener("click", () => {
