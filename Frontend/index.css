@@ -45,6 +45,7 @@ fieldset {
 }
 legend {
   font-size: 2rem;
+  margin: 0.5rem 0;
 }
 button {
   font-size: 1.3rem;

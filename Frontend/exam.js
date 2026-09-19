@@ -15,6 +15,34 @@ const container = document.getElementById("question-container");
 // ------------------------------
 // FETCH QUESTIONS
 // ------------------------------
+
+async function loadExam() {
+  try {
+    const returnToQuestion = localStorage.getItem("returnToQuestion");
+    const savedQuestions = localStorage.getItem("examQuestions");
+    if (returnToQuestion !== null && savedQuestions) {
+      questions = JSON.parse(savedQuestions);
+      currentIndex = Number(returnToQuestion);
+      localStorage.removeItem("returnToQuestion");
+    } else {
+      const res = await fetch("http://localhost:3000/exam/start", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      questions = data.questions;
+      localStorage.setItem("examQuestions", JSON.stringify(questions));
+    }
+    renderQuestion();
+    renderNav();
+  } catch (err) {
+    console.error("Failed to load exam:", err);
+  }
+}
+
 // async function loadExam() {
 //   try {
 //     const res = await fetch("http://localhost:3000/exam/start", {
@@ -39,45 +67,45 @@ const container = document.getElementById("question-container");
 //   }
 // }
 
-async function loadExam() {
-  try {
-    const savedQuestions = localStorage.getItem("examQuestions");
+// async function loadExam() {
+//   try {
+//     const savedQuestions = localStorage.getItem("examQuestions");
 
-    if (savedQuestions) {
-      questions = JSON.parse(savedQuestions);
-    } else {
-      const res = await fetch("http://localhost:3000/exam/start", {
-        method: "POST",
+//     if (savedQuestions) {
+//       questions = JSON.parse(savedQuestions);
+//     } else {
+//       const res = await fetch("http://localhost:3000/exam/start", {
+//         method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
+//         headers: {
+//           "Content-Type": "application/json",
 
-          Authorization: `Bearer ${token}`,
-        },
-      });
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
 
-      const data = await res.json();
+//       const data = await res.json();
 
-      questions = data.questions;
+//       questions = data.questions;
 
-      localStorage.setItem("examQuestions", JSON.stringify(questions));
-    }
+//       localStorage.setItem("examQuestions", JSON.stringify(questions));
+//     }
 
-    const returnToQuestion = localStorage.getItem("returnToQuestion");
+//     const returnToQuestion = localStorage.getItem("returnToQuestion");
 
-    if (returnToQuestion !== null) {
-      currentIndex = Number(returnToQuestion);
+//     if (returnToQuestion !== null) {
+//       currentIndex = Number(returnToQuestion);
 
-      localStorage.removeItem("returnToQuestion");
-    }
+//       localStorage.removeItem("returnToQuestion");
+//     }
 
-    renderQuestion();
+//     renderQuestion();
 
-    renderNav();
-  } catch (err) {
-    console.error("Failed to load exam:", err);
-  }
-}
+//     renderNav();
+//   } catch (err) {
+//     console.error("Failed to load exam:", err);
+//   }
+// }
 
 // ------------------------------
 // RENDER QUESTION
