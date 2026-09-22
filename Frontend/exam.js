@@ -192,8 +192,11 @@ function renderQuestion(shouldFocusHeading = false) {
   const legend = document.createElement("legend");
 
   legend.textContent = question.question;
+  const instructionText = document.createElement("p");
+  instructionText.textContent = "Select one answer to continue.";
 
   fieldset.appendChild(legend);
+  legend.after(instructionText);
 
   for (let i = 0; i < options.length; i++) {
     const optionText = options[i];
