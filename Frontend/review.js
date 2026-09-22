@@ -32,14 +32,14 @@ const unanswered = questions.filter((q) => {
 //   window.location.href = "exam.html";
 // }
 
-if (unanswered.length > 0) {
-  alert("Please answer all questions before reviewing.");
+// if (unanswered.length > 0) {
+//   alert("Please answer all questions before reviewing.");
 
-  localStorage.setItem("returnToQuestion", "3");
-  //  localStorage.setItem("returnToQuestion", "4");
+//   localStorage.setItem("returnToQuestion", "3");
+//   //  localStorage.setItem("returnToQuestion", "4");
 
-  window.location.href = "exam.html";
-}
+//   window.location.href = "exam.html";
+// }
 
 // ------------------------------
 // RENDER REVIEW CONTENT

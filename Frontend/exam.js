@@ -5,7 +5,7 @@ if (!token) {
 }
 
 // ------------------------------
-// GLOBAL STATE
+// GLOBAL STate
 // ------------------------------
 let questions = [];
 let currentIndex = 0;
@@ -232,8 +232,68 @@ function renderQuestion(shouldFocusHeading = false) {
 // ------------------------------
 // RENDER NAV
 // ------------------------------
+// function renderNav() {
+//   const nav = document.getElementById("nav-container");
+//   nav.innerHTML = "";
+
+//   const buttons = [];
+
+//   if (currentIndex > 0) {
+//     buttons.push({
+//       text: "Previous",
+//       onClick: () => {
+//         currentIndex--;
+//         renderQuestion(true);
+//         renderNav();
+//       },
+//     });
+//   }
+
+//   if (currentIndex < questions.length - 1) {
+//     buttons.push({
+//       text: "Next",
+//       onClick: () => {
+//         currentIndex++;
+//         renderQuestion(true);
+//         renderNav();
+//       },
+//     });
+//   }
+
+//   if (currentIndex === questions.length - 1) {
+//     // buttons.push({
+//     //   text: "Review",
+//     //   onClick: () => {
+//     //     window.location.href = "review.html";
+//     //   },
+//     // });
+
+//     buttons.push({
+//       text: "Submit",
+//       onClick: () => {
+//         submitExam();
+//       },
+//     });
+//   }
+
+//   for (let i = 0; i < buttons.length; i++) {
+//     const btn = buttons[i];
+
+//     const buttonEl = document.createElement("button");
+
+//     buttonEl.type = "button";
+
+//     buttonEl.textContent = btn.text;
+
+//     buttonEl.addEventListener("click", btn.onClick);
+
+//     nav.appendChild(buttonEl);
+//   }
+// }
+
 function renderNav() {
   const nav = document.getElementById("nav-container");
+
   nav.innerHTML = "";
 
   const buttons = [];
@@ -261,13 +321,6 @@ function renderNav() {
   }
 
   if (currentIndex === questions.length - 1) {
-    // buttons.push({
-    //   text: "Review",
-    //   onClick: () => {
-    //     window.location.href = "review.html";
-    //   },
-    // });
-
     buttons.push({
       text: "Submit",
       onClick: () => {
@@ -282,21 +335,32 @@ function renderNav() {
     const buttonEl = document.createElement("button");
 
     buttonEl.type = "button";
-
     buttonEl.textContent = btn.text;
+
+    // Only disable Next and Submit when there is no answer
+    if (btn.text !== "Previous" && !answers[questions[currentIndex].id]) {
+      buttonEl.disabled = true;
+    }
 
     buttonEl.addEventListener("click", btn.onClick);
 
     nav.appendChild(buttonEl);
   }
 }
-
 // ------------------------------
 // SAVE ANSWER
 // ------------------------------
+// function saveAnswer(questionId, value) {
+//   answers[questionId] = value;
+//   localStorage.setItem("examAnswers", JSON.stringify(answers));
+// }
+
 function saveAnswer(questionId, value) {
   answers[questionId] = value;
+
   localStorage.setItem("examAnswers", JSON.stringify(answers));
+
+  renderNav();
 }
 
 // ------------------------------
@@ -333,86 +397,3 @@ async function submitExam() {
 // INIT
 // ------------------------------
 loadExam();
-
-// const token = localStorage.getItem("token");
-
-// if (!token) {
-//   window.location.href = "login.html";
-// }
-
-// const examContainer = document.getElementById("exam-container");
-// const nextButton = document.getElementById("next4");
-
-// let questions = [];
-
-// fetch("questions.json")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     questions = data;
-
-//     // Randomize the questions
-//     for (let i = questions.length - 1; i > 0; i--) {
-//       const randomIndex = Math.floor(Math.random() * (i + 1));
-
-//       const temp = questions[i];
-//       questions[i] = questions[randomIndex];
-//       questions[randomIndex] = temp;
-//     }
-
-//     // Create the questions
-//     for (let i = 0; i < questions.length; i++) {
-//       const question = questions[i];
-
-//       const fieldset = document.createElement("fieldset");
-
-//       const legend = document.createElement("legend");
-//       legend.textContent = question.question;
-
-//       fieldset.appendChild(legend);
-
-//       for (let j = 0; j < question.options.length; j++) {
-//         const option = question.options[j];
-
-//         const label = document.createElement("label");
-
-//         const radio = document.createElement("input");
-//         radio.type = "radio";
-//         radio.name = "question" + question.id;
-//         radio.value = option;
-
-//         label.appendChild(radio);
-//         label.appendChild(document.createTextNode(" " + option));
-
-//         fieldset.appendChild(label);
-//         fieldset.appendChild(document.createElement("br"));
-//       }
-
-//       examContainer.appendChild(fieldset);
-//     }
-//   })
-//   .catch((error) => {
-//     console.error("Error loading questions:", error);
-//   });
-
-// // Save answers and go to review
-// nextButton.addEventListener("click", () => {
-//   const examAnswers = {};
-
-//   for (let i = 0; i < questions.length; i++) {
-//     const question = questions[i];
-
-//     const selectedAnswer = document.querySelector(
-//       `input[name="question${question.id}"]:checked`,
-//     );
-
-//     if (selectedAnswer) {
-//       examAnswers["q" + question.id] = selectedAnswer.value;
-//     } else {
-//       examAnswers["q" + question.id] = null;
-//     }
-//   }
-
-//   localStorage.setItem("examAnswers", JSON.stringify(examAnswers));
-// });
-
-// loadExam();

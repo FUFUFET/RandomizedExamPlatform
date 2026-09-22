@@ -131,5 +131,5 @@ app.post("/exam/submit", (req, res) => {
 // -------------------- START SERVER --------------------
 
 app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
+  console.log("Server is running ");
 });
