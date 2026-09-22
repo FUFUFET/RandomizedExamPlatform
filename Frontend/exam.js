@@ -341,7 +341,16 @@ function renderNav() {
     buttonEl.textContent = btn.text;
 
     // Only disable Next and Submit when there is no answer
-    if (btn.text !== "Previous" && !answers[questions[currentIndex].id]) {
+    // if (btn.text !== "Previous" && !answers[questions[currentIndex].id]) {
+    //   buttonEl.disabled = true;
+    // }
+
+    const isPreviousButton = btn.text === "Previous";
+    const currentQuestionId = questions[currentIndex].id;
+    const currentAnswer = answers[currentQuestionId];
+    const hasAnswer = currentAnswer !== undefined;
+
+    if (!isPreviousButton && !hasAnswer) {
       buttonEl.disabled = true;
     }
 
