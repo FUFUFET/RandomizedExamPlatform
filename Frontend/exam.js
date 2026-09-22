@@ -179,7 +179,9 @@ function renderQuestion(shouldFocusHeading = false) {
 
   const heading = document.createElement("h1");
 
-  heading.textContent = "Question " + (currentIndex + 1);
+  // heading.textContent = "Question " + (currentIndex + 1);
+  // heading is also a progress indicator
+  heading.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
 
   heading.setAttribute("tabindex", "-1");
 
