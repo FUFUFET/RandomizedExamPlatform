@@ -59,6 +59,14 @@ nav {
   justify-content: center;
 }
 
+dialog::backdrop {
+  background: rgb(0 0 0);
+}
+
+dialog[tabindex="0"]:focus {
+  outline: 2px white solid;
+}
+
 @media screen and (max-width: 400px) {
   input[type="text"],
   input[type="email"] {
