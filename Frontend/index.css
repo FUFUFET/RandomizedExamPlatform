@@ -60,11 +60,12 @@ nav {
 }
 
 dialog::backdrop {
-  background: rgb(0 0 0);
+  background: rgb(0 0 0 / 50%);
+  backdrop-filter: blur(0.3rem);
 }
 
-dialog[tabindex="0"]:focus {
-  outline: 2px white solid;
+a:focus {
+  outline: 2px blue solid;
 }
 
 @media screen and (max-width: 400px) {

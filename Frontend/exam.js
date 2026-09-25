@@ -17,12 +17,12 @@ let answers = JSON.parse(localStorage.getItem("examAnswers")) || {};
 const container = document.getElementById("question-container");
 
 const reviewDialog = document.getElementById("review-dialog");
-reviewDialog.setAttribute("tabindex", "0");
+// reviewDialog.setAttribute("tabindex", "0");
 
 const reviewContainer = document.getElementById("review-container");
 
-// const reviewHeading = document.getElementById("review-heading");
-// reviewHeading.setAttribute("tabindex", "-1");
+const reviewHeading = document.getElementById("review-heading");
+reviewHeading.setAttribute("tabindex", "-1");
 
 const backToExamButton = document.getElementById("back-to-exam");
 
@@ -185,7 +185,8 @@ function renderNav() {
 
       onClick: () => {
         openReview();
-        reviewDialog.focus();
+        // reviewDialog.focus();
+        reviewHeading.focus();
       },
     });
   }
@@ -299,6 +300,23 @@ function renderReview() {
 
     wrapper.appendChild(descriptionList);
 
+    const questionLink = document.createElement("a");
+
+    questionLink.href = "#";
+    questionLink.textContent = `Go to Question ${i + 1}`;
+
+    questionLink.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      reviewDialog.close();
+
+      currentIndex = i;
+
+      renderQuestion(true);
+      renderNav();
+    });
+    wrapper.appendChild(questionLink);
+
     reviewContainer.appendChild(wrapper);
   }
 }
@@ -311,7 +329,6 @@ function setReviewFocusTrap() {
   const interactiveElements = [];
 
   const elements = [
-    reviewDialog,
     ...reviewDialog.querySelectorAll(
       "button, input, select, textarea, a[href], [tabindex]:not([tabindex='-1'])",
     ),
